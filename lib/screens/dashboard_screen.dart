@@ -229,12 +229,6 @@ class DashboardScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: const Text('Transaction deleted'),
-                          action: SnackBarAction(
-                            label: 'Undo',
-                            onPressed: () {
-                              // Undo would require storing the deleted transaction
-                            },
-                          ),
                         ),
                       );
                     },
