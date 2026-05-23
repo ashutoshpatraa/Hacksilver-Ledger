@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -77,7 +76,7 @@ class BackupService {
   Future<bool> restoreDatabase(BuildContext context) async {
     try {
       // 1. Pick file with validation
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
+      FilePickerResult? result = await FilePicker.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['db', 'sqlite', 'ledger'],
         allowMultiple: false,
@@ -98,8 +97,8 @@ class BackupService {
       final file = File(filePath);
 
       // 2. Validate file extension
-      final extension = extensionFromPath(filePath).toLowerCase();
-      if (!_validExtensions.contains('.$extension')) {
+      final fileExt = extension(filePath).toLowerCase();
+      if (!_validExtensions.contains(fileExt)) {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -179,7 +178,7 @@ class BackupService {
             if (await File(backupPath).exists()) {
               await File(backupPath).copy(currentDbPath);
             }
-            throw e;
+            rethrow;
           }
           await Future.delayed(const Duration(milliseconds: 100));
         }
@@ -248,7 +247,7 @@ class BackupService {
   }
 
   /// Get database info for diagnostics
-  Future<Map<String, dynamic>?>> getDatabaseInfo() async {
+  Future<Map<String, dynamic>?> getDatabaseInfo() async {
     try {
       final dbPath = await getDatabasesPath();
       final path = join(dbPath, 'hacksilver_ledger.db');

@@ -8,6 +8,7 @@ import '../providers/transaction_provider.dart';
 import '../providers/category_provider.dart';
 import '../providers/currency_provider.dart';
 import '../constants/app_constants.dart';
+import '../utils/icon_utils.dart';
 import 'add_transaction_screen.dart';
 import 'add_loan_screen.dart';
 
@@ -210,12 +211,7 @@ class LoanDetailsScreen extends StatelessWidget {
                                 category.colorValue,
                               ).withValues(alpha: 0.2),
                               child: Icon(
-                                IconData(
-                                  category.iconCode,
-                                  fontFamily:
-                                      category.fontFamily ?? 'MaterialIcons',
-                                  fontPackage: category.fontPackage,
-                                ),
+                                categoryIconData(category.iconCode, fontFamily: category.fontFamily, fontPackage: category.fontPackage),
                                 color: Color(category.colorValue),
                               ),
                             ),

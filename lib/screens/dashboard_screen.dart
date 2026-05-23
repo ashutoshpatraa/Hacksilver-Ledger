@@ -12,6 +12,7 @@ import '../widgets/summary_card.dart';
 import '../widgets/custom_drawer.dart';
 import '../widgets/account_summary.dart';
 import 'add_transaction_screen.dart';
+import '../utils/icon_utils.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -254,13 +255,7 @@ class DashboardScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   child: Icon(
-                                    IconData(
-                                      category.iconCode,
-                                      fontFamily:
-                                          category.fontFamily ??
-                                          'MaterialIcons',
-                                      fontPackage: category.fontPackage,
-                                    ),
+                                    categoryIconData(category.iconCode, fontFamily: category.fontFamily, fontPackage: category.fontPackage),
                                     color: Color(category.colorValue),
                                     size: 24,
                                   ),

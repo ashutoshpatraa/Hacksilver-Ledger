@@ -8,6 +8,7 @@ import '../providers/currency_provider.dart';
 import '../models/category.dart';
 import 'add_transaction_screen.dart';
 import '../widgets/custom_drawer.dart';
+import '../utils/icon_utils.dart';
 
 class TransactionListScreen extends StatefulWidget {
   const TransactionListScreen({super.key});
@@ -324,12 +325,7 @@ class _TransactionListScreenState extends State<TransactionListScreen> {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Icon(
-                              IconData(
-                                category.iconCode,
-                                fontFamily:
-                                    category.fontFamily ?? 'MaterialIcons',
-                                fontPackage: category.fontPackage,
-                              ),
+                              categoryIconData(category.iconCode, fontFamily: category.fontFamily, fontPackage: category.fontPackage),
                               color: Color(category.colorValue),
                               size: 24,
                             ),

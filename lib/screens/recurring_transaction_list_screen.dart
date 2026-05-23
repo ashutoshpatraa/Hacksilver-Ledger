@@ -5,6 +5,7 @@ import '../providers/recurring_transaction_provider.dart';
 import '../models/category.dart';
 import '../providers/category_provider.dart';
 import '../widgets/custom_drawer.dart';
+import '../utils/icon_utils.dart';
 
 class RecurringTransactionListScreen extends StatelessWidget {
   const RecurringTransactionListScreen({super.key});
@@ -50,11 +51,7 @@ class RecurringTransactionListScreen extends StatelessWidget {
                       category.colorValue,
                     ).withValues(alpha: 0.2),
                     child: Icon(
-                      IconData(
-                        category.iconCode,
-                        fontFamily: category.fontFamily ?? 'MaterialIcons',
-                        fontPackage: category.fontPackage,
-                      ),
+                      categoryIconData(category.iconCode, fontFamily: category.fontFamily, fontPackage: category.fontPackage),
                       color: Color(category.colorValue),
                     ),
                   ),

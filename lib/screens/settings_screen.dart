@@ -5,7 +5,6 @@ import '../providers/currency_provider.dart';
 import '../providers/sync_provider.dart';
 import '../widgets/custom_drawer.dart';
 import '../services/backup_service.dart';
-import '../services/sync_service.dart';
 import '../utils/security_utils.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -588,9 +587,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 );
 
                 if (mounted) {
-                  Navigator.pop(context); // Close loading
+                  Navigator.pop(this.context); // Close loading
                   
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(this.context).showSnackBar(
                     SnackBar(
                       content: Text(
                         success
@@ -615,7 +614,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     if (mounted) {
       if (result.success) {
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(this.context).showSnackBar(
           SnackBar(
             content: Text(
               'Sync complete! ${result.syncedCount} items uploaded.',
@@ -624,7 +623,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(this.context).showSnackBar(
           SnackBar(
             content: Text(result.errorMessage ?? 'Sync failed'),
             backgroundColor: Colors.red,
@@ -653,7 +652,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Navigator.pop(ctx);
               await syncProvider.clearConfiguration();
               if (mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
+                ScaffoldMessenger.of(this.context).showSnackBar(
                   const SnackBar(
                     content: Text('Cloud sync disconnected'),
                   ),
@@ -764,7 +763,7 @@ class RadioGroup<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return _RadioGroupScope(
       groupValue: groupValue,
-      onChanged: onChanged,
+      onChanged: onChanged != null ? (dynamic v) => onChanged!(v as T?) : null,
       child: child,
     );
   }

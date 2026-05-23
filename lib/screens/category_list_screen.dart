@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/category_provider.dart';
 import '../models/category.dart';
 import '../widgets/custom_drawer.dart';
+import '../utils/icon_utils.dart';
 
 class CategoryListScreen extends StatelessWidget {
   const CategoryListScreen({super.key});
@@ -68,11 +69,7 @@ class CategoryList extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundColor: Color(cat.colorValue).withValues(alpha: 0.2),
                 child: Icon(
-                  IconData(
-                    cat.iconCode,
-                    fontFamily: cat.fontFamily ?? 'MaterialIcons',
-                    fontPackage: cat.fontPackage,
-                  ),
+                  categoryIconData(cat.iconCode, fontFamily: cat.fontFamily, fontPackage: cat.fontPackage),
                   color: Color(cat.colorValue),
                 ),
               ),

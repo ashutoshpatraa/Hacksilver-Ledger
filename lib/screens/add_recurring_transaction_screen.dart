@@ -5,6 +5,7 @@ import '../models/recurring_transaction.dart';
 import '../models/category.dart';
 import '../providers/recurring_transaction_provider.dart';
 import '../providers/category_provider.dart';
+import '../utils/icon_utils.dart';
 
 class AddRecurringTransactionScreen extends StatefulWidget {
   const AddRecurringTransactionScreen({super.key});
@@ -115,11 +116,7 @@ class _AddRecurringTransactionScreenState
                           child: Row(
                             children: [
                               Icon(
-                                IconData(
-                                  cat.iconCode,
-                                  fontFamily: cat.fontFamily ?? 'MaterialIcons',
-                                  fontPackage: cat.fontPackage,
-                                ),
+                                categoryIconData(cat.iconCode, fontFamily: cat.fontFamily, fontPackage: cat.fontPackage),
                                 color: Color(cat.colorValue),
                                 size: 20,
                               ),

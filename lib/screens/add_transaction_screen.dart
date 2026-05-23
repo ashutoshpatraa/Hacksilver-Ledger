@@ -9,6 +9,7 @@ import '../providers/category_provider.dart';
 import '../providers/account_provider.dart';
 import '../providers/loan_provider.dart';
 import '../utils/security_utils.dart';
+import '../utils/icon_utils.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   final Transaction? transaction;
@@ -720,12 +721,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           BorderRadius.circular(6),
                                     ),
                                     child: Icon(
-                                      IconData(
-                                        cat.iconCode,
-                                        fontFamily: cat.fontFamily ??
-                                            'MaterialIcons',
-                                        fontPackage: cat.fontPackage,
-                                      ),
+                                      categoryIconData(cat.iconCode, fontFamily: cat.fontFamily, fontPackage: cat.fontPackage),
                                       size: 14,
                                       color: Color(cat.colorValue),
                                     ),

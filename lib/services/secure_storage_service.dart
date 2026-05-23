@@ -7,8 +7,7 @@ import 'package:crypto/crypto.dart';
 class SecureStorageService {
   static const _storage = FlutterSecureStorage(
     aOptions: AndroidOptions(
-      encryptedSharedPreferences: true,
-      keyCipherAlgorithm: KeyCipherAlgorithm.RSA_ECB_PKCS1Padding,
+      keyCipherAlgorithm: KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding,
       storageCipherAlgorithm: StorageCipherAlgorithm.AES_GCM_NoPadding,
     ),
     iOptions: IOSOptions(
@@ -31,7 +30,7 @@ class SecureStorageService {
   }
 
   /// Retrieve Supabase credentials
-  static Future<Map<String, String?>?>> getSupabaseCredentials() async {
+  static Future<Map<String, String?>?> getSupabaseCredentials() async {
     final url = await _storage.read(key: _keySupabaseUrl);
     final key = await _storage.read(key: _keySupabaseKey);
     

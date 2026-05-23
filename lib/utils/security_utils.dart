@@ -18,9 +18,21 @@ class SecurityUtils {
   );
   
   static final RegExp _sqlInjectionPattern = RegExp(
-    r"(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|WHERE|AND|OR)\b)|(--|;|/\*|\*/|'|\"|\")",
+    r'''(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|WHERE|AND|OR)\b)|(--|;|/\*|\*/|'|")''',
     caseSensitive: false,
   );
+
+  /// Validates an email address
+  static ValidationResult validateEmail(String? email) {
+    if (email == null || email.isEmpty) {
+      return ValidationResult.invalid('Email cannot be empty');
+    }
+    final trimmed = email.trim();
+    if (!_emailRegex.hasMatch(trimmed)) {
+      return ValidationResult.invalid('Invalid email format');
+    }
+    return ValidationResult.valid(trimmed);
+  }
 
   /// Validates and sanitizes a string to prevent SQL injection
   static String sanitizeInput(String input, {int maxLength = 500}) {
@@ -287,4 +299,13 @@ class ValidationException implements Exception {
 
   @override
   String toString() => 'ValidationException: $message';
+}
+
+/// Exception thrown when a security check fails
+class SecurityException implements Exception {
+  final String message;
+  const SecurityException(this.message);
+
+  @override
+  String toString() => 'SecurityException: $message';
 }

@@ -33,9 +33,9 @@ class SecurityConstants {
   // Session tokens
   static const int tokenExpiryHours = 24;
 
-  // Safe characters for user input
-  static const Set<int> safeAsciiChars = {
-    32..127, // Printable ASCII
+  // Safe characters for user input (printable ASCII range 32-127)
+  static final Set<int> safeAsciiChars = {
+    for (var i = 32; i <= 127; i++) i,
   };
 
   // SQL injection patterns to block

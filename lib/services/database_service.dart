@@ -61,7 +61,6 @@ class DatabaseService {
       await db.execute('ALTER TABLE $tableName ADD COLUMN ${DbConstants.columnSyncStatus} TEXT DEFAULT "pending"');
     } catch (e) {
       // Columns may already exist, ignore error
-      print('Sync columns may already exist for $tableName: $e');
     }
   }
 

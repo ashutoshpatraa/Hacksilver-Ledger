@@ -1,4 +1,6 @@
 /// Base mixin for models that support sync
+library;
+
 import 'package:uuid/uuid.dart';
 
 enum SyncStatus { pending, synced, failed, conflict }
